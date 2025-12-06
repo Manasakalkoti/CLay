@@ -1,0 +1,28 @@
+{
+  "listen_host": "0.0.0.0",
+  "listen_port": 5000,
+  "url_target": "http://example.com",
+  "decoy_technology": {
+    "server": "Apache HTTP Server",
+    "framework": "Microsoft ASP.NET"
+  },
+  "user_preference": {
+    "filter_request_by_user_agent": true,
+    "filter_comment": true,
+    "filter_response_header": true,
+    "error_template_changing": true,
+    "add_decoy_header": true,
+    "add_decoy_cookie": true,
+    "add_decoy_comment": {
+      "status": true,
+      "decoy_comments": [
+        {
+          "comment": "dev",
+          "url_target_paths": [
+            ".*/"
+          ]
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,4 @@
+mitmproxy==12.2.0
+regex
+requests
+geoip2

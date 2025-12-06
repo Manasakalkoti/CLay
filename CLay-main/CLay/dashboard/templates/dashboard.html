@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CLay Dashboard</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #f2f2f2;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        table {
+            width: 100%;
+            background: #fff;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #aaa;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #444;
+            color: #fff;
+        }
+        tr:hover {
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+    <h1>🛡️ CLay Attack Log Dashboard</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>⏰ Time</th>
+                <th>🌐 IP</th>
+                <th>📍 Location</th>
+                <th>🚨 Reputation</th>
+                <th>🧠 User-Agent</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for entry in logs %}
+            <tr>
+                <td>{{ entry.timestamp }}</td>
+                <td>{{ entry.ip }}</td>
+                <td>{{ entry.location }}</td>
+                <td>{{ entry.reputation }}</td>
+                <td>{{ entry.user_agent }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <script>
+        // Poll /logs every 2 seconds and update table body
+        async function fetchLogs() {
+            try {
+                const res = await fetch('/logs');
+                if (!res.ok) return;
+                const logs = await res.json();
+                const tbody = document.getElementById('logs-body');
+                if (!tbody) return;
+                // build rows
+                let html = '';
+                for (const entry of logs) {
+                    if (entry.raw) {
+                        html += `<tr><td colspan="5">${escapeHtml(entry.raw)}</td></tr>`;
+                        continue;
+                    }
+                    const ts = entry.timestamp || '';
+                    const ip = entry.ip || '';
+                    const loc = entry.location || '';
+                    const rep = entry.reputation || '';
+                    const ua = entry.user_agent || '';
+                    html += `<tr><td>${escapeHtml(ts)}</td><td>${escapeHtml(ip)}</td><td>${escapeHtml(loc)}</td><td>${escapeHtml(rep)}</td><td>${escapeHtml(ua)}</td></tr>`;
+                }
+                tbody.innerHTML = html;
+            } catch (e) {
+                // ignore transient errors
+                console.error('fetchLogs error', e);
+            }
+        }
+
+        function escapeHtml(s) {
+            if (!s) return '';
+            return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+        }
+
+        // initial poll and interval
+        fetchLogs();
+        setInterval(fetchLogs, 2000);
+    </script>
+</body>
+</html>
