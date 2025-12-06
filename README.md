@@ -15,7 +15,6 @@ The system detects common attacker tools such as:
 - nikto
 - acunetix
 When detected, it logs the attacker’s IP and User-Agent.  
-📄 Reference: Enhancement 1 :contentReference[oaicite:5]{index=5}
 
 ---
 
@@ -24,7 +23,6 @@ When a bad User-Agent is found:
 - IP geolocation is retrieved using **MaxMind GeoLite2**
 - Threat score is fetched from **AbuseIPDB**
 - Logs are enriched with country, city, and reputation score  
-📄 Reference: Enhancement 2 :contentReference[oaicite:6]{index=6}
 
 ---
 
@@ -32,7 +30,6 @@ When a bad User-Agent is found:
 When a malicious request is detected, the system:
 - Sends an email alert using Gmail SMTP  
 - Includes IP, geolocation, reputation score, and User-Agent  
-📄 Reference: Enhancement 3 :contentReference[oaicite:7]{index=7}
 
 This brings real SOC-style alerting into the project.
 
@@ -44,7 +41,7 @@ A Flask-based dashboard:
 - Displays attacks in a formatted table (time, IP, location, reputation, User-Agent)
 - Highlights malicious entries
 - Runs on **http://localhost:8080**  
-📄 References: Enhancement 4 :contentReference[oaicite:8]{index=8} :contentReference[oaicite:9]{index=9}
+
 
 ---
 
@@ -80,7 +77,7 @@ Alerts include:
 - User-Agent  
 
 Sent automatically on detection.  
-📄 Reference: Enhancement 3 :contentReference[oaicite:10]{index=10}
+
 
 ---
 
