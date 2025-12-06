@@ -1,4 +1,4 @@
-# CLay – Cyber Attack Detection & Logging System
+CLay – Cyber Attack Detection & Logging System
 
 CLay is a lightweight cybersecurity monitoring tool that detects malicious web requests, enriches them with geolocation + threat-reputation data, sends real-time alerts, and provides a visual dashboard to analyze attacks.
 
@@ -6,9 +6,9 @@ This project simulates features of a mini Security Operations Center (SOC) tool.
 
 ---
 
-## 🚀 Features
+Features
 
-### **1. Malicious User-Agent Detection**
+1. Malicious User-Agent Detection**
 The system detects common attacker tools such as:
 - sqlmap
 - curl
@@ -18,7 +18,7 @@ When detected, it logs the attacker’s IP and User-Agent.
 
 ---
 
-### **2. GeoIP + Threat Reputation Lookup**
+2. GeoIP + Threat Reputation Lookup**
 When a bad User-Agent is found:
 - IP geolocation is retrieved using **MaxMind GeoLite2**
 - Threat score is fetched from **AbuseIPDB**
@@ -26,7 +26,7 @@ When a bad User-Agent is found:
 
 ---
 
-### **3. Email Alert System**
+3. Email Alert System**
 When a malicious request is detected, the system:
 - Sends an email alert using Gmail SMTP  
 - Includes IP, geolocation, reputation score, and User-Agent  
@@ -35,7 +35,7 @@ This brings real SOC-style alerting into the project.
 
 ---
 
-### **4. Visual Dashboard**
+4. Visual Dashboard**
 A Flask-based dashboard:
 - Reads from `logs/attackers.log`
 - Displays attacks in a formatted table (time, IP, location, reputation, User-Agent)
@@ -44,8 +44,7 @@ A Flask-based dashboard:
 
 
 ---
-
-## 📁 Project Structure
+ Project Structure
 
 
 
@@ -57,9 +56,9 @@ You must also download:
 
 ---
 
-## ▶️ Running the System
+ Running the System
 
-### **1. Start the backend**
+1. Start the backend**
 This will:
 - Log attacker
 - Enrich with GeoIP + reputation
@@ -68,7 +67,7 @@ This will:
 
 ---
 
-## 📬 Email Alert Example
+ Email Alert Example
 
 Alerts include:
 - IP Address  
@@ -81,7 +80,7 @@ Sent automatically on detection.
 
 ---
 
-## 🧠 Learnings
+Learnings
 
 - Handling attacker fingerprinting via User-Agents  
 - Integrating GeoIP + reputation intelligence  
